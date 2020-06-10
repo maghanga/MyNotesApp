@@ -21,6 +21,7 @@ public class CategoryInfo {
     }
 
     public void setCategoryId(int categoryId) {
+
         this.categoryId = categoryId;
     }
 
