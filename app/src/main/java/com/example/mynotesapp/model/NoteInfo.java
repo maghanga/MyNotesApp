@@ -6,11 +6,21 @@ public class NoteInfo {
     private String noteTitle;
     private String noteBody;
     private LocalDateTime timeNoteCreated;
+    private CategoryInfo categoryOfNote;
 
-    public NoteInfo(String noteTitle, String noteBody, LocalDateTime timeNoteCreated) {
+    public NoteInfo(String noteTitle, String noteBody, LocalDateTime timeNoteCreated, CategoryInfo categoryOfNote) {
         this.noteTitle = noteTitle;
         this.noteBody = noteBody;
         this.timeNoteCreated = timeNoteCreated;
+        this.categoryOfNote = categoryOfNote;
+    }
+
+    public CategoryInfo getCategoryOfNote() {
+        return categoryOfNote;
+    }
+
+    public void setCategoryOfNote(CategoryInfo categoryOfNote) {
+        this.categoryOfNote = categoryOfNote;
     }
 
     public String getNoteTitle() {
