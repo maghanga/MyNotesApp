@@ -63,7 +63,7 @@ public class NoteInfo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-//        parcel.writeParcelable(categoryOfNote, 0);
+        parcel.writeParcelable(categoryOfNote, 0);
         parcel.writeString(noteTitle);
         parcel.writeString(noteBody);
     }

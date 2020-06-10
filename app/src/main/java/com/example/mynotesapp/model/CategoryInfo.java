@@ -1,8 +1,11 @@
 package com.example.mynotesapp.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class CategoryInfo {
+public class CategoryInfo implements Parcelable {
     private int categoryId;
     private String categoryTitle;
     private String categoryDescription;
@@ -15,6 +18,38 @@ public class CategoryInfo {
         this.categoryDescription = categoryDescription;
         this.notesInCategory = notesInCategory;
     }
+
+    protected CategoryInfo(Parcel parcel) {
+        categoryId = parcel.readInt();
+        categoryTitle = parcel.readString();
+        categoryDescription = parcel.readString();
+        notesInCategory = parcel.createTypedArrayList(NoteInfo.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt(categoryId);
+        parcel.writeString(categoryTitle);
+        parcel.writeString(categoryDescription);
+        parcel.writeTypedList(notesInCategory);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Parcelable.Creator<CategoryInfo> CREATOR = new Creator<CategoryInfo>() {
+        @Override
+        public CategoryInfo createFromParcel(Parcel in) {
+            return new CategoryInfo(in);
+        }
+
+        @Override
+        public CategoryInfo[] newArray(int size) {
+            return new CategoryInfo[size];
+        }
+    };
 
     public int getCategoryId() {
         return categoryId;
