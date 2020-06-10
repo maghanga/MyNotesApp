@@ -1,19 +1,36 @@
 package com.example.mynotesapp.model;
 
-import java.time.LocalDateTime;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class NoteInfo {
+public class NoteInfo implements Parcelable {
     private String noteTitle;
     private String noteBody;
-    private LocalDateTime timeNoteCreated;
     private CategoryInfo categoryOfNote;
 
-    public NoteInfo(String noteTitle, String noteBody, LocalDateTime timeNoteCreated, CategoryInfo categoryOfNote) {
+    public NoteInfo(String noteTitle, String noteBody, CategoryInfo categoryOfNote) {
         this.noteTitle = noteTitle;
         this.noteBody = noteBody;
-        this.timeNoteCreated = timeNoteCreated;
         this.categoryOfNote = categoryOfNote;
     }
+
+    protected NoteInfo(Parcel parcel) {
+        categoryOfNote = parcel.readParcelable(CategoryInfo.class.getClassLoader());
+        noteTitle = parcel.readString();
+        noteBody = parcel.readString();
+    }
+
+    public static final Parcelable.Creator<NoteInfo> CREATOR = new Creator<NoteInfo>() {
+        @Override
+        public NoteInfo createFromParcel(Parcel parcel) {
+            return new NoteInfo(parcel);
+        }
+
+        @Override
+        public NoteInfo[] newArray(int size) {
+            return new NoteInfo[size];
+        }
+    };
 
     public CategoryInfo getCategoryOfNote() {
         return categoryOfNote;
@@ -39,11 +56,15 @@ public class NoteInfo {
         this.noteBody = noteBody;
     }
 
-    public LocalDateTime getTimeNoteCreated() {
-        return timeNoteCreated;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setTimeNoteCreated(LocalDateTime timeNoteCreated) {
-        this.timeNoteCreated = timeNoteCreated;
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+//        parcel.writeParcelable(categoryOfNote, 0);
+        parcel.writeString(noteTitle);
+        parcel.writeString(noteBody);
     }
 }
