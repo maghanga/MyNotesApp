@@ -11,6 +11,8 @@ public class DataManager {
     public static DataManager getInstance() {
         if(myInstance == null) {
             myInstance = new DataManager();
+            myInstance.initializeCategories();
+            myInstance.initializeNotes();
         }
         return myInstance;
     }
@@ -72,6 +74,34 @@ public class DataManager {
                 count++;
         }
         return count;
+    }
+
+    // populate note list and category list
+
+    public void initializeNotes(){
+        final DataManager dm = DataManager.getInstance();
+
+        CategoryInfo categoryOne = dm.getCategory("Work");
+        CategoryInfo categoryTwo = dm.getCategory("School");
+        CategoryInfo categoryThree = dm.getCategory("Finance");
+
+        NoteInfo noteOne = new NoteInfo("Constraint Layout", "Learn how to use guidelines and the android studio designer", categoryTwo);
+        NoteInfo noteTwo = new NoteInfo("Feed fragment layout", "Work on the feed activity for the chat app", categoryOne);
+        NoteInfo noteThree = new NoteInfo("Save cash", "Come up with a saving plan for the upcoming month", categoryThree);
+
+        noteInfoList.add(noteOne);
+        noteInfoList.add(noteTwo);
+        noteInfoList.add(noteThree);
+    }
+
+    public void initializeCategories(){
+        CategoryInfo categoryOne = new CategoryInfo("Work", "These are notes related to any tasks from work");
+        CategoryInfo categoryTwo = new CategoryInfo("School", "Assignments from school and some unfinished classwork");
+        CategoryInfo categoryThree = new CategoryInfo("Finance", "These are my personal financial records over the past year");
+
+        categoryInfoList.add(categoryOne);
+        categoryInfoList.add(categoryTwo);
+        categoryInfoList.add(categoryThree);
     }
 }
 

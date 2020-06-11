@@ -12,11 +12,9 @@ public class CategoryInfo implements Parcelable {
     private List<NoteInfo> notesInCategory;
 
 
-    public CategoryInfo(int categoryId, String categoryTitle, String categoryDescription, List<NoteInfo> notesInCategory) {
-        this.categoryId = categoryId;
+    public CategoryInfo(String categoryTitle, String categoryDescription) {
         this.categoryTitle = categoryTitle;
         this.categoryDescription = categoryDescription;
-        this.notesInCategory = notesInCategory;
     }
 
     protected CategoryInfo(Parcel parcel) {
