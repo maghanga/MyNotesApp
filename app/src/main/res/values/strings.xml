@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MyNotesApp</string>
     <string name="confirm_button">Confirm</string>
+    <string name="new_note_fab">New note</string>
+    <string name="note_title">Note Title</string>
+    <string name="category_title">Category Title</string>
 </resources>
