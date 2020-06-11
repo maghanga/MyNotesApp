@@ -28,5 +28,4 @@
         android:contentDescription="@string/new_note_fab"/>
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
