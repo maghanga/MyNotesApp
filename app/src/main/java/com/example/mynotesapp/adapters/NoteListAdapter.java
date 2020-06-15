@@ -1,6 +1,7 @@
 package com.example.mynotesapp.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotesapp.R;
+import com.example.mynotesapp.model.CategoryInfo;
 import com.example.mynotesapp.model.NoteInfo;
 
 import java.util.List;
@@ -29,33 +31,29 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
     @NonNull
     @Override
     public NoteListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.activity_note_list, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.activity_note_item, parent, false);
         return new NoteListViewHolder(itemView);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull NoteListViewHolder holder, int position) {
         NoteInfo note = notes.get(position);
+        CategoryInfo categoryOfNote = note.getCategoryOfNote();
         holder.noteTitleTextView.setText(note.getNoteTitle());
-        holder.categoryTitleTextView.setText(note.getCategoryOfNote().getCategoryTitle());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return notes.size();
     }
 
-    public static class NoteListViewHolder extends RecyclerView.ViewHolder {
-        public TextView noteTitleTextView;
-        public TextView categoryTitleTextView;
+    public class NoteListViewHolder extends RecyclerView.ViewHolder {
+        public final TextView noteTitleTextView;
 
         public NoteListViewHolder(@NonNull View itemView) {
             super(itemView);
-            noteTitleTextView = (TextView) itemView.findViewById(R.id.noteTitleText);
-            categoryTitleTextView = (TextView) itemView.findViewById(R.id.categoryTitleText);
-
+            noteTitleTextView = itemView.findViewById(R.id.noteTitleText);
         }
-
-
     }
 }

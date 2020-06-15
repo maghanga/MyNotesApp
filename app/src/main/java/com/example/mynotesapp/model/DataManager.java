@@ -11,8 +11,8 @@ public class DataManager {
     public static DataManager getInstance() {
         if(myInstance == null) {
             myInstance = new DataManager();
-            myInstance.initializeCategories();
             myInstance.initializeNotes();
+            myInstance.initializeCategories();
         }
         return myInstance;
     }

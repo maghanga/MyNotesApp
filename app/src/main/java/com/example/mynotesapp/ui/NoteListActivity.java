@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.mynotesapp.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.mynotesapp.adapters.NoteListAdapter;
+import com.example.mynotesapp.model.DataManager;
+import com.example.mynotesapp.model.NoteInfo;
+
+import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -16,13 +20,17 @@ public class NoteListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
-
+        displayContent();
 
     }
 
     public void displayContent(){
-        recyclerView = (RecyclerView) findViewById(R.id.noteListRecyclerView);
+        recyclerView = findViewById(R.id.noteListRecyclerView);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        List<NoteInfo> notes = DataManager.getInstance().getNoteInfoList();
+        final NoteListAdapter noteListAdapter = new NoteListAdapter(notes, this);
+        recyclerView.setAdapter(noteListAdapter);
     }
 }
