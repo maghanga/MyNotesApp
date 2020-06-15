@@ -10,14 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mynotesapp.R;
+import com.example.mynotesapp.model.NoteInfo;
+
+import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteListViewHolder> {
+    private final List<NoteInfo> notes;
     private final Context context;
     private final LayoutInflater layoutInflater;
 
-    public NoteListAdapter(Context context) {
+    public NoteListAdapter(List<NoteInfo> notes, Context context) {
+        this.notes = notes;
         this.context = context;
-        layoutInflater = LayoutInflater.from(context);
+        this.layoutInflater = LayoutInflater.from(context);
     }
 
 
@@ -30,7 +35,9 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteLi
 
     @Override
     public void onBindViewHolder(@NonNull NoteListViewHolder holder, int position) {
-
+        NoteInfo note = notes.get(position);
+        holder.noteTitleTextView.setText(note.getNoteTitle());
+        holder.categoryTitleTextView.setText(note.getCategoryOfNote().getCategoryTitle());
     }
 
     @Override
