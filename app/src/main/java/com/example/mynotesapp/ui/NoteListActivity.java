@@ -1,6 +1,7 @@
 package com.example.mynotesapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -10,7 +11,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NoteListActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,5 +18,11 @@ public class NoteListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note_list);
 
 
+    }
+
+    public void displayContent(){
+        recyclerView = (RecyclerView) findViewById(R.id.noteListRecyclerView);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
     }
 }
