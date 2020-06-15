@@ -76,6 +76,7 @@ public class DataManager {
         return count;
     }
 
+
     // populate note list and category list
 
     public void initializeNotes(){
